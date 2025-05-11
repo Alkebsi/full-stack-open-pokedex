@@ -1,8 +1,5 @@
 name: Deployment Pipeline
 
-env:
-  CONDITION: ${{ contains(github.event.head_commit.message, '#skip') }}
-
 on:
   push:
     branches:
@@ -39,13 +36,13 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4 
+      - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
 
       - name: Bump version and push tag
-        if: github.event_name == 'push' && env.CONDITION == false
-        uses: anothrNick/github-tag-action@1.73.0 
+        if: github.event_name == 'push' && !contains(github.event.head_commit.message, '#skip')
+        uses: anothrNick/github-tag-action@1.73.0
         env:
           DEFAULT__BUMP: patch
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
