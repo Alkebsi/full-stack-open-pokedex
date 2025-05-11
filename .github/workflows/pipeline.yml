@@ -38,7 +38,7 @@ jobs:
             severity: info
             username: Not_Unhappy_Bot
             color: '#00ff00'
-            details: to https://mkebsi-poke.onrender.com/ by {Add github usere here}
+            details: to https://mkebsi-poke.onrender.com/ by ${{ github.actor }}
             text: A new version of Pokedex deployed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
       - name: Failure Discord Notification
@@ -48,7 +48,7 @@ jobs:
             severity: error
             username: So_Sad_Bot
             color: '#ff0000'
-            details: commit {add commit URL here} by {add commiter} broke the build!
+            details: commit ${{ github.event.head_commit.url }} by ${{ github.actor }} broke the build!
             text: build failed
             webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
 
