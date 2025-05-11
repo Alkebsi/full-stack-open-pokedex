@@ -1,5 +1,8 @@
 name: Deployment Pipeline
 
+env:
+  CONDITION: ${{ contains(github.event.head_commit.message, '#skip') }}
+
 on:
   push:
     branches:
@@ -41,7 +44,7 @@ jobs:
           fetch-depth: '0'
 
       - name: Bump version and push tag
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && env.CONDITION == false
         uses: anothrNick/github-tag-action@1.73.0 
         env:
           DEFAULT__BUMP: patch
