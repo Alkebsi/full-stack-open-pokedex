@@ -6,7 +6,7 @@ Fork the repository to complete course exercises
 
 ## Links
 Live: https://mkebsi-poke.onrender.com/
-Full Pipline: phonebook repo url
+Full Pipline: https://github.com/Alkebsi/FullStackOpen-Part3
 
 ## Commands
 
